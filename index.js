@@ -9,12 +9,28 @@ import cookieParser from 'cookie-parser'
 dotenv.config()
 
 const app = express()
+
 app.use(bodyParser.json({ limit: '10mb' }));
+
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+
+const allowedOrigins = [
+    'http://localhost:5173',
+    process.env.FRONTEND_URL
+  ];
+
 app.use(cors({
-    origin : process.env.FRONTEND_URL,
-    credentials : true
-}))
+    origin: function (origin, callback) {
+      // Allow requests with no origin, like mobile apps or curl
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true
+  }))
 app.use(express.json());
 app.use(cookieParser())
 
