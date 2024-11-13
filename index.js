@@ -31,6 +31,7 @@ app.use(cors({
     },
     credentials: true
   }))
+
 app.use(express.json());
 app.use(cookieParser())
 
@@ -44,6 +45,7 @@ connectDB().then(()=>{
         console.log(`server listening in ${process.env.PORT}`)
     } )
 })
+
 app.get('/',(req,res)=>{
     res.status(200).send({
         message:`server running in ${process.env.PORT}`
