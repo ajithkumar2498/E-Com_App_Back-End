@@ -2,8 +2,8 @@ import jwt from "jsonwebtoken"
 
 const authToken = async (req,res,next)=>{
     try {
-        const token = req.cookies?.token
-        // console.log("token    - ",token)
+        const token = req.cookies?.token || req.header
+        console.log("token    - ",token)
         if(!token){
             return res.status(200).send({
                 message: "please Login...",
