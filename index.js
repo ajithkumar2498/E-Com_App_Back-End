@@ -15,8 +15,7 @@ app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 const allowedOrigins = [
-    'http://localhost:5173',
-    process.env.FRONTEND_URL
+    process.env.FRONTEND_URL,
   ];
   
 
