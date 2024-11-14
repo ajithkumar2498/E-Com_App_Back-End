@@ -2,11 +2,11 @@ import jwt from "jsonwebtoken"
 
 const authToken = async (req,res,next)=>{
     try {
-        const token = req.cookies?.token || req.header
+        const token = req.cookies?.token 
         console.log("token    - ",token)
         if(!token){
             return res.status(200).send({
-                message: "please Login...",
+                message: "please login to continue...",
                 error: true,
                 success: false
             })
@@ -14,6 +14,7 @@ const authToken = async (req,res,next)=>{
            // Verify the token
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
+          console.log("decoded", decoded)
           return res.status(403).json({
             message: "Token verification failed",
             error: true,
