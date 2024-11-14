@@ -10,7 +10,7 @@ dotenv.config()
 
 const app = express()
 
-app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.json({ limit: '20mb' }));
 
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
