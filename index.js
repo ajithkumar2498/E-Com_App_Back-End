@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 
 app.use(cors({
-    origin:"http://localhost/5173"||"https://ak-cart-ecommerce.netlify.app",
+    origin:"https://ak-cart-ecommerce.netlify.app" || "http://localhost/5173",
     credentials: true
 }));
 
