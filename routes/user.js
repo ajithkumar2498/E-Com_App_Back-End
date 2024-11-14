@@ -18,7 +18,7 @@ const router =express.Router()
 router.post('/signup',userSignUpController)
 router.post('/signin', signInController)
 router.get('/user-details',authToken,userDetailsController)
-router.get('/user-logout',userLogoutController)
+router.get('/user-logout',authToken, userLogoutController)
 
 //admin panel
 router.get("/all-users", authToken, allUsers)
