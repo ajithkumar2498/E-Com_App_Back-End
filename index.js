@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 
   app.use(cors({
-    origin: process.env.FRONTEND_URL,
+    origin: [process.env.FRONTEND_URL, "https://6734e7e382278a0008183f70--ak-cart-ecommerce.netlify.app"],
     credentials: true
 }));
 
