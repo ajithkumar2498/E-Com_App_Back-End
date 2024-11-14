@@ -20,18 +20,19 @@ const allowedOrigins = [
   ];
   
 
-app.use(cors({
+  app.use(cors({
     origin: function (origin, callback) {
-      // Allow requests with no origin, like mobile apps or curl
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      } else {
-        return callback(new Error('Not allowed by CORS'));
-      }
+        console.log('Request Origin:', origin);
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        } else {
+            console.error('Not allowed by CORS:', origin);
+            return callback(new Error('Not allowed by CORS'));
+        }
     },
     credentials: true
-  }))
+}));
 
 app.use(express.json());
 app.use(cookieParser())
