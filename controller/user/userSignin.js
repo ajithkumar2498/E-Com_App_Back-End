@@ -5,6 +5,8 @@ import jwt from "jsonwebtoken"
 const signInController = async (req,res)=>{
      try {
          const {email, password} = req.body
+
+         console.log(req.body)
          if(!email){
             throw new Error("Please Provide email")
              }
