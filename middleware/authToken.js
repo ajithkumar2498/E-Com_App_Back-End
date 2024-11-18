@@ -18,7 +18,6 @@ const authToken = async (req,res,next)=>{
         // Verify the token
         jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
           if (err) {
-
             return res.status(403).json({
               message: "Token verification failed",
               error: true,

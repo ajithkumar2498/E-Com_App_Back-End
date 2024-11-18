@@ -35,6 +35,7 @@ const signInController = async (req,res)=>{
           expiresIn: "8h", // Token expiration time
         });
     
+        console.log("token - ", token)
         // Send response with token
         res.status(200).send({
           message: "Login successful",
