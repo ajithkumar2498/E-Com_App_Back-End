@@ -21,9 +21,9 @@ const deleteUserController = async (req,res)=>{
         }
 
         res.status(200).send({
-            message: success,
             success: true,
-            message: "user deleted Successfully"
+            message: "user deleted Successfully",
+            error:false
         })
     } catch (error) {
         res.status(400).send({
