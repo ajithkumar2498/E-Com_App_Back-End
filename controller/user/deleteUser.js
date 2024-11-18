@@ -6,6 +6,8 @@ const deleteUserController = async (req,res)=>{
     try {
         const {userId} = req.body
 
+        console.log(userId)
+
         if(!userId){
             throw new Error("User Id required")
         }
