@@ -11,6 +11,9 @@ import countAddToCartProduct from "../controller/user/countAddToCartProduct.js";
 import addToCartViewProduct from "../controller/user/addToCartViewProduct.js";
 import updateAddToCartProduct from "../controller/user/updateAddToCartProduct.js";
 import deletAddTOCartProduct from "../controller/user/deleteAddToCartProduct.js";
+import deleteUserController from "../controller/user/deleteUser.js";
+
+
 
 const router =express.Router()
 
@@ -19,6 +22,7 @@ router.post('/signup',userSignUpController)
 router.post('/signin', signInController)
 router.get('/user-details',authToken, userDetailsController)
 router.get('/user-logout',authToken, userLogoutController)
+router.delete('/delete-user', authToken, deleteUserController)
 
 //admin panel
 router.get("/all-users", authToken, allUsers)
