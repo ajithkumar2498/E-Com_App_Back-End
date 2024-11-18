@@ -3,8 +3,6 @@ import jwt from "jsonwebtoken"
 const authToken = async (req,res,next)=>{
     try {
         const authHeader = req?.headers?.authorization
-        console.log(req?.headers?.authorization)
-        console.log(authHeader)
         
         if (!authHeader || !authHeader.startsWith("Bearer ")) {
           return res.status(401).send({
@@ -26,7 +24,6 @@ const authToken = async (req,res,next)=>{
               success: false,
             });
           }
-           console.log("Decoded - ",decoded)
           // Attach the decoded user ID to the request object
           req.userId = decoded?._id;
     
