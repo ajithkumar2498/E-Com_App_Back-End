@@ -10,7 +10,7 @@ const deleteUserController = async (req,res)=>{
             throw new Error("User Id required")
         }
 
-        const deleteduser = await userModel.findByIdAndDelete({userId})
+        const deleteduser = await userModel.findByIdAndDelete(userId)
 
         if(!deleteduser){
             return res.status(404).send({
