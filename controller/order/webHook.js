@@ -84,8 +84,10 @@ const webhooks = async (req, res)=>{
 
 
     const order =  new orderModel(orderDetails)
+    console.log(order)
 
     const saveOrder = await order.save()
+    console.log(saveOrder)
 
     if(saveOrder?._id){
       const deleteCart = await cartModel.deleteMany({userId:session.metadata.userId})

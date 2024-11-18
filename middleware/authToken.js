@@ -2,35 +2,37 @@ import jwt from "jsonwebtoken"
 
 const authToken = async (req,res,next)=>{
     try {
-        const token = req.cookies?.token 
+        const authHeader = req?.headers?.authorization
         
-        console.log("token    - ",token)
-        if(!token){
-            return res.status(200).send({
-                message: "please login to continue...",
-                error: true,
-                success: false
-            })
-        }
-           // Verify the token
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err) {
-          console.log("decoded", decoded)
-          return res.status(403).json({
-            message: "Token verification failed",
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
+          return res.status(401).send({
+            message: "Authorization header missing or malformed",
             error: true,
-            success: false
+            success: false,
           });
         }
-  
-        // Initialize req.user if it doesn't exist
-        // req.user = req.user || {};
-        req.userId = decoded?._id;
-  
-        // Proceed to the next middleware
-        next();
-      });
+    
+        // Remove "Bearer " prefix to get the token
+        const token = authHeader.split(" ")[1];
+    
+        // Verify the token
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+          if (err) {
 
+            return res.status(403).json({
+              message: "Token verification failed",
+              error: true,
+              success: false,
+            });
+          }
+    
+          // Attach the decoded user ID to the request object
+          req.userId = decoded?._id;
+    
+          // Proceed to the next middleware
+          next();
+        });
+       
 
     } catch (error) {
         res.status(400).send({
