@@ -14,13 +14,14 @@ app.use(bodyParser.json({ limit: '20mb' }));
 
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
-
 app.use(cors({
-    origin:[process.env.FRONTEND_URL, "http://localhost:5173/"], // frontend URL
+    origin:[process.env.FRONTEND_URL, "http://localhost:5173", "http://localhost:5174" ], // frontend URL
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   }));
+
+  app.options("*", cors());
 
 app.use(express.json());
 app.use(cookieParser())

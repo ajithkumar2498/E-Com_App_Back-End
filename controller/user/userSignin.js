@@ -34,8 +34,8 @@ const signInController = async (req,res)=>{
         const token = jwt.sign(tokenData, process.env.JWT_SECRET, {
           expiresIn: "8h", // Token expiration time
         });
-    
-        console.log("token - ", token)
+
+        
         // Send response with token
         res.status(200).send({
           message: "Login successful",
